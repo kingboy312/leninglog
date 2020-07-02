@@ -1,7 +1,7 @@
 {% extends "home/index.html" %}
 {% block header %}
     <h2>
-        topics
+        topics:
     </h2>
     <ul>
       <li>
@@ -10,14 +10,14 @@
         </h3>
       </li>
         {% for topic in topics %}
-            {{ topicid|Enty.query.filter_by(id = "topic.id") }}
           <li>
               <h3>
-                  <a href="/topic/{{topicid}}">
+                  <a href="/topic/{{m}}">
                     {{topic}}
                   </a>
               </h3>
           </li>
+          {% m +=1 %}
         {% else %}
           <li><h3>No topics have been added yet.</h3></li>
         {% endfor %}

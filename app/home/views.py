@@ -12,7 +12,7 @@ def index():
 @home.route('/topic/')
 def topic():
     topic = Topic.query.filter_by()
-    return render_template("home/topics.html",topics = topic,Enty = Empty,topicid = None)
+    return render_template("home/topics.html",topics = topic,Enty = Empty,topicid = None,m=0)
 @home.route('/leninglog/')
 def bat():
     return render_template("home/bat.html")
