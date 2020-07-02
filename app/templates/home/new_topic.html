@@ -1,0 +1,15 @@
+{% extends "home/index.html" %}
+{% block header %}
+<form role="form" method="POST" action="">
+    {{ form.topic }}
+    {% for err in form.topic.errors %}
+        <div class="form-control">
+          <ul class="errors">
+              <li>{{ err }}</li>
+          </ul>
+        </div>
+    {% endfor %}
+        {{ form.csrf_token }}
+        {{ form.submit }}
+</form>
+{% endblock %}
