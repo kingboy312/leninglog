@@ -1,5 +1,4 @@
 from . import *
-from app import db
 from app.models import *
 from app.home.forms import *
 from flask import render_template, url_for, redirect, flash, session, request

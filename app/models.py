@@ -1,4 +1,5 @@
-from .import db
+from .import SQLAlchemy,create_app
+db = SQLAlchemy(create_app())
 class Topic(db.Model):
     __tablename__ = "topic"
     id = db.Column(db.Integer, primary_key=True)
