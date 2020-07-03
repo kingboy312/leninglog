@@ -28,3 +28,6 @@ def add_topic():
         db.session.commit()
         return redirect("/topic/")
     return render_template("home/new_topic.html",form = form)
+@home.route('/topic/<int:topicid>/')
+def enty():
+    enty = Empty.query.filter_by(topic_id = topicid)

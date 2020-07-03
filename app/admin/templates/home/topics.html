@@ -11,11 +11,9 @@
       </li>
         {% for topic in topics %}
           <li>
-              <h3>
-                  <a href="/topic/{{topic.id}}/">
-                    {{topic.topic_s}}
-                  </a>
-              </h3>
+
+                  <a href="/topic/{{topic.id}}/">{{topic.topic_s}}</a>
+
           </li>
         {% else %}
           <li><h3>No topics have been added yet.</h3></li>
