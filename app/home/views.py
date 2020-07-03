@@ -29,5 +29,6 @@ def add_topic():
         return redirect("/topic/")
     return render_template("home/new_topic.html",form = form)
 @home.route('/topic/<int:topicid>/')
-def enty():
+def enty(topicid):
     enty = Empty.query.filter_by(topic_id = topicid)
+    return render_template("home/topic.html", entry=enty)

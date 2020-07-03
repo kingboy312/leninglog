@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'app1/base.html' %}
+{% block header %}
+    <h3><a href="/new_enty/{{topic.id}}/">new_entry</a></h3>
+
+
+
+  {% for entry in entries %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          {{ entry.add_time|date:'M. d, Y H:i' }}
+          <small>
+            <a href="/edit_entry/{{entry.id}}/">edit entry</a>
+          </small>
+        </h3>
+      </div>
+    <div class="panel-body">
+
+      <h3>{{ entry.empty|linebreaks }}</h3>
+
+
+
+      </div>
+    </div>
+  {% else %}
+
+      There are no entries for this topic yet.
+
+  {% endfor %}
+{% endblock header %}
