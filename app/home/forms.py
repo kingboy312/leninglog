@@ -22,7 +22,7 @@ class newentryforme(FlaskForm):
         validators=[
             DataRequired("not noll！"),
         ]
-        description="new_entry:",
+        description='new_entry:',
         render_kw={
             "placeholder": "new_entry",
             "size":38,
