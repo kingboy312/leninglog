@@ -25,7 +25,6 @@ class newentryforme(FlaskForm):
         description='new_entry:',
         render_kw={
             "placeholder": "new_entry",
-            "size":38,
         })  
     submit = SubmitField(
         'add',
