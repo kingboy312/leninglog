@@ -26,8 +26,7 @@ class newentryforme(FlaskForm):
         render_kw={
             "placeholder": "new_topic",
             "size":38,
-        })
-    )
+        })  
     submit = SubmitField(
         'add',
         render_kw={
