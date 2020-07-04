@@ -33,3 +33,16 @@ def emty(topicid):
     enty = Empty.query.filter_by(topic_id = topicid)
     topic = Topic.query.filter_by(id = topicid).first()
     return render_template("home/topic.html", entries=enty,topic=topic)
+@home.route("/new_enty/<int:topicid>/")
+def new_enty(topicid):
+    topic = Topic.query.filter_by(id=topicid)
+    form = newentryforme()
+    if form.validate_on_submit():  
+        data = form.data 
+        entry = Empty(
+            empty= data["entry"]
+        )
+        db.session.add(entry) 
+        db.session.commit()
+        return redirect("/topic/{}/".format(topicid))
+    return render_template("home/topic.html", form=form,topic=topic)

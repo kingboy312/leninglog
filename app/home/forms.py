@@ -17,3 +17,20 @@ class new_topic_forme(FlaskForm):
             "class": "btn btn-primary",
         }
     )
+class newentryforme(FlaskForm):
+    entry = StringField(
+        validators=[
+            DataRequired("not noll！"),
+        ]
+        description="new_entry:",
+        render_kw={
+            "placeholder": "new_topic",
+            "size":38,
+        })
+    )
+    submit = SubmitField(
+        'add',
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )
