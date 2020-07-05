@@ -21,7 +21,7 @@ class newentryforme(FlaskForm):
     entry = StringField(
         validators=[
             DataRequired("not noll！"),
-        ]
+        ],
         description='new_entry:',
         render_kw={
             "placeholder": "new_entry",

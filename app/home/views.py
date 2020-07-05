@@ -40,9 +40,10 @@ def new_enty(topicid):
     if form.validate_on_submit():  
         data = form.data 
         entry = Empty(
-            empty= data["entry"]
+            empty=data["entry"],
+            topic_id=topicid
         )
         db.session.add(entry) 
         db.session.commit()
         return redirect("/topic/{}/".format(topicid))
-    return render_template("home/topic.html", form=form,topic=topic)
+    return render_template("home/new_entry.html",form=form,topic=topic)
