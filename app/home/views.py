@@ -41,7 +41,7 @@ def new_enty(topicid):
         data = form.data 
         entry = Empty(
             empty=data["entry"],
-            topic_id=topicid
+            topic_id=str(topicid)
         )
         db.session.add(entry) 
         db.session.commit()
