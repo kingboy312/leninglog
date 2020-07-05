@@ -1,16 +1,18 @@
 {% extends "home/index.html" %}
 {% block header %}
 <a href="topic/{{topic.id}}">{{topic.topic_s}}</a>
-<form role="form" method="POST" action="">
-    {{ form.entry }}
-    {% for err in form.entry.errors %}
-        <div class="form-control">
-          <ul class="errors">
-              <li>{{ err }}</li>
-          </ul>
-        </div>
-    {% endfor %}
-    {{ form.csrf_token }}
-    {{ form.submit }}
+<form rodle="form" method="POST" action="">
+    <div class="form-group">
+        <label>new_topic:</label>
+        {{ form.entry }}
+    </div>
 </form>
+<script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace('content',{
+        filebrowserUploadUrl:'/ckupload/',
+        height:'545px',
+        width:'1318px'
+    });
+</script>
 {% endblock %}

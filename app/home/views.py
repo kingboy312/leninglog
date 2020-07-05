@@ -45,5 +45,5 @@ def new_enty(topicid):
         )
         db.session.add(entry) 
         db.session.commit()
-        return redirect("/topic/{}/".format(topicid))
+        return redirect(url_for("home.topic"),topicid)
     return render_template("home/new_entry.html",form=form,topic=topic)

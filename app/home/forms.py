@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField,FieldList
 from wtforms.validators import DataRequired, Email, Regexp, EqualTo, ValidationError
 from app.models import *
 class new_topic_forme(FlaskForm):
@@ -18,13 +18,11 @@ class new_topic_forme(FlaskForm):
         }
     )
 class newentryforme(FlaskForm):
-    entry = StringField(
-        validators=[
-            DataRequired("not noll！"),
-        ],
-        description='new_entry:',
+    entry = FieldList(
+        '',
         render_kw={
-            "placeholder": "new_entry",
+            "class":"form-control ckedior",
+            "name":"content"
         })  
     submit = SubmitField(
         'add',
