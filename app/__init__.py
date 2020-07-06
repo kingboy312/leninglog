@@ -3,8 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config,DevelopmentConfig
 
 def create_app():
+    
     app_ = DevelopmentConfig()
     app = app_.app
+    app.config.from_object(config['default'])
+    
+    config['default'].init_app(app)
     app.config["DEBUG"] = True
     from app.home import home as home_blueprint
     app.register_blueprint(home_blueprint)
