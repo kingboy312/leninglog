@@ -1,13 +1,12 @@
 {% extends "home/index.html" %}
 {% block header %}
-<a href="topic/{{topic.id}}">{{topic.topic_s}}</a>
+<a href="/topic/{{topic.id}}">{{topic.topic_s}}</a>
 <form rodle="form" method="POST" action="">
     <div class="form-group">
-        <label>new_topic:</label>
+        <label>new_empty:</label>
         {{ form.entry }}
     </div>
-</form>
-<script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('content',{
         filebrowserUploadUrl:'/ckupload/',
@@ -15,4 +14,7 @@
         width:'1318px'
     });
 </script>
+    {{form.submit}}
+</form>
+
 {% endblock %}

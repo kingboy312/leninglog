@@ -20,8 +20,7 @@ class new_topic_forme(FlaskForm):
 class newentryforme(FlaskForm):
     entry = TextAreaField(
         render_kw={
-            "class":"form-control ckedior",
-            "name":"content"
+            "class":"form-control ckedior"
         })  
     submit = SubmitField(
         'add',

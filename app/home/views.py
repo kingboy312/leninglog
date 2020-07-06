@@ -27,7 +27,7 @@ def add_topic():
     return render_template("home/new_topic.html",form = form)
 @home.route('/topic/<int:topicid>/')
 def emty(topicid):
-    enty = Empty.query.filter_by(topic_id = topicid)
+    enty = Empty.query.filter_by(topic_id= topicid)
     topic = Topic.query.filter_by(id = topicid).first()
     return render_template("home/topic.html", entries=enty,topic=topic)
 @home.route("/new_enty/<int:topicid>/",methods=["GET", "POST"])
