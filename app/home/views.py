@@ -33,9 +33,9 @@ def emty(topicid):
     enty = Empty.query.filter_by(topic_id = topicid)
     topic = Topic.query.filter_by(id = topicid).first()
     return render_template("home/topic.html", entries=enty,topic=topic)
-@home.route("/new_enty/<int:topicid>/")
+@home.route("/new_enty/<int:topicid>/",methods=["GET", "POST"])
 def new_enty(topicid):
-    topic = Topic.query.filter_by(id=topicid)
+    topic = Topic.query.filter_by(id=topicid).first()
     form = newentryforme()
     if form.validate_on_submit():  
         data = form.data 
