@@ -6,14 +6,11 @@ from werkzeug.security import generate_password_hash
 from sqlalchemy import and_
 from functools import wraps
 from app.home.forms import *
-@home.route('/')
-def index():
-    return render_template("home/index.html")
 @home.route('/topic/')
 def topic():
     topic = Topic.query.filter_by()
     return render_template("home/topics.html",topics = topic)
-@home.route('/leninglog/')
+@home.route('/')
 def bat():
     return render_template("home/bat.html")
 @home.route("/new_topic/",methods=["GET", "POST"])
