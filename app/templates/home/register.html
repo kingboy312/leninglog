@@ -1,7 +1,8 @@
 {% extends "home/index.html" %}
 {% block header %}
   <form rodle="form" method="POST" action="">
-          <div class="form-control">
+    <div class="form-control">
+      {{ form.username.label }}
       {{ form.username }}
     </div>
     {% for err in form.username.errors %}
@@ -12,6 +13,7 @@
         </div>
     {% endfor %}
     <div class="form-control">
+      {{ form.email.label }}
       {{ form.email }}
     </div>
     {% for err in form.email.errors %}
@@ -22,7 +24,8 @@
         </div>
     {% endfor %}
     <div class="form-control">
-        {{ form.pwd }}
+      {{ form.pwd.label }}
+      {{ form.pwd }}
     </div>
     {% for err in form.pwd.errors %}
         <div class="form-control">
@@ -32,7 +35,8 @@
         </div>
     {% endfor %}
     <div class="form-control">
-        {{ form.repwd }}
+      {{ form.repwd.label }}
+      {{ form.repwd }}
     </div>
     {% for err in form.repwd.errors %}
         <div class="form-control">

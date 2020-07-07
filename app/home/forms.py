@@ -30,6 +30,7 @@ class newentryforme(FlaskForm):
     )
 class registerforme(FlaskForm):
     username = StringField(
+        label="username：",
         validators=[
             DataRequired("用户名不能为空！"),
         ],
@@ -39,6 +40,7 @@ class registerforme(FlaskForm):
         }
     )
     email = StringField(
+        label="email：",
         validators=[
             DataRequired("邮箱不能为空！"),
             Email("邮箱格式不正确！")
@@ -50,6 +52,7 @@ class registerforme(FlaskForm):
         }
     )
     pwd = PasswordField(
+        label="password：",
         validators=[
             DataRequired("密码不能为空！")
         ],
@@ -59,6 +62,7 @@ class registerforme(FlaskForm):
         }
     )
     repwd = PasswordField(
+        label="password(again)：",
         validators=[
             DataRequired("请输入确认密码！"),
             EqualTo('pwd', message="两次密码不一致！")
@@ -69,7 +73,7 @@ class registerforme(FlaskForm):
         }
     )
     submit = SubmitField(
-        '注册',
+        'register',
         render_kw={
             "class": "btn btn-primary",
         }

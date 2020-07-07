@@ -3,9 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config,DevelopmentConfig
 
 def create_app():
-    
-    app_ = DevelopmentConfig()
-    app = app_.app
+    app = Flask(__name__)
     app.config.from_object(config['default'])
     
     config['default'].init_app(app)
