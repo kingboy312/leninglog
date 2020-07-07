@@ -74,7 +74,7 @@ class registerforme(FlaskForm):
             "class": "btn btn-primary",
         }
     )
-     def validate_email(self, field):
+    def validate_email(self, field):
         """
         检测注册邮箱是否已经存在
         :param field: 字段名

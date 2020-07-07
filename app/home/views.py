@@ -44,3 +44,20 @@ def new_enty(topicid):
         db.session.commit()
         return redirect(url_for("home.topic"),topicid)
     return render_template("home/new_entry.html",form=form,topic=topic)
+@home.route("/user/register/", methods=["GET", "POST"])
+def register():
+    """
+    注册功能
+    """
+    form = RegisterForm()
+    if form.validate_on_submit():
+        data = form.data 
+        user = User(
+            name = data["username"],
+            email = data["email"],
+            pwd = generate_password_hash(data["pwd"]),
+        )
+        db.session.add(user)
+        db.session.commit()
+        session["user_id"]=User
+    return render_template("home/register.html", form=form)
