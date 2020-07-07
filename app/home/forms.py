@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField,FieldList
-from wtforms.validators import DataRequired, Email, Regexp, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Email, Regexp, EqualTo, ValidationError,length
 from app.models import *
 class new_topic_forme(FlaskForm):
     topic = StringField(
@@ -87,3 +87,38 @@ class registerforme(FlaskForm):
         user = User.query.filter_by(email=email).count()
         if user == 1:
             raise ValidationError("邮箱已经存在！")
+class LoginForm(FlaskForm):
+    username = StringField(
+        validators=[
+            DataRequired("用户名不能为空！"),
+            Length(min=3, max=50, message="用户名长度必须在3到10位之间")
+        ],
+        description="用户名",
+        render_kw={
+            "type"       : "text",
+            "placeholder": "请输入用户名！",
+            "class":"validate-username",
+            "size" : 38,
+            "maxlength" : 99
+        }
+    )
+    password = PasswordField(
+        validators=[
+            DataRequired("密码不能为空！"),
+            Length(min=3, message="密码长度不少于6位")
+        ],
+        description="密码",
+        render_kw={
+            "type"       : "password",
+            "placeholder": "请输入密码！",
+            "class":"validate-password",
+            "size": 38,
+            "maxlength": 99
+        }
+    )
+    submit = SubmitField(
+        '登录',
+        render_kw={
+            "class": "btn btn-primary login",
+        }
+    )

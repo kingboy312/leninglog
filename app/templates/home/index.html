@@ -10,6 +10,13 @@
 
             <a href="/">leninglog</a>
             <a href="/topic/">topic</a>
+            {% if session["user_id"] == None %}
+            <a href="/users/register/">register</a>
+            <a href="/login/">login</a>
+            {% else %}
+            Hello, {{session["username"]}}
+            <a href="/logout/">logout</a>
+            {% endif %}
         </h1>
         </li>
     </ul>
