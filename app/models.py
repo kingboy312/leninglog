@@ -10,6 +10,9 @@ class User(db.Model):
     admin = db.Column(db.Integer,default=0)
     def __repr__(self):
         return '<User %r>' % self.name
+    def check_pwd(self,pwd):
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.pwd, pwd)
 class Topic(db.Model):
     __tablename__ = "topic"
     id = db.Column(db.Integer, primary_key=True)

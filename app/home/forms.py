@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField, TextAreaField,FieldList
-from wtforms.validators import DataRequired, Email, Regexp, EqualTo, ValidationError,length
+from wtforms.validators import DataRequired, Email, Regexp, EqualTo, ValidationError, length, Length
 from app.models import *
 class new_topic_forme(FlaskForm):
     topic = StringField(

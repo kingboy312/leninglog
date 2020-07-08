@@ -1,12 +1,24 @@
 from . import *
 from app.models import *
-from app.home.forms import *
 from flask import render_template, url_for, redirect, flash, session, request
 from werkzeug.security import generate_password_hash
 from sqlalchemy import and_
 from functools import wraps
 from app.home.forms import *
+def user_login(f):
+    """
+    登录装饰器
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("home.login"))
+        return f(*args, **kwargs)
+
+    return decorated_function
+
 @home.route('/topic/')
+@user_login
 def topic():
     topic = Topic.query.filter_by()
     return render_template("home/topics.html",topics = topic)
@@ -14,6 +26,7 @@ def topic():
 def bat():
     return render_template("home/bat.html")
 @home.route("/new_topic/",methods=["GET", "POST"])
+@user_login
 def add_topic():
     form = new_topic_forme()           
     if form.validate_on_submit():  
@@ -26,11 +39,13 @@ def add_topic():
         return redirect("/topic/")
     return render_template("home/new_topic.html",form = form)
 @home.route('/topic/<int:topicid>/')
+@user_login
 def emty(topicid):
     enty = Empty.query.filter_by(topic_id= topicid)
     topic = Topic.query.filter_by(id = topicid).first()
     return render_template("home/topic.html", entries=enty,topic=topic)
 @home.route("/new_enty/<int:topicid>/",methods=["GET", "POST"])
+@user_login
 def new_enty(topicid):
     topic = Topic.query.filter_by(id=topicid).first()
     form = newentryforme()
@@ -59,11 +74,12 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
-        session["user_id"]=User.query.filter_by(email=data["email"]).first().id
+        session["user_id"]=User.query.filter_by(name=data["username"]).first().id
         session["username"]=data["username"]
         return redirect(url_for("home.bat"))
     return render_template("home/register.html", form=form)
 @home.route("/logout/")
+@user_login
 def logout():
     session.pop("user_id",None)
     session.pop("username",None)
@@ -76,20 +92,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         data = form.data
-        user = User.query.filter_by(email=data["email"]).first()
+        user = User.query.filter_by(name=data["username"]).first()
         if not user :
             flash("邮箱不存在！", "err")
             return redirect(url_for("home.login"))
-        if not user.check_pwd(data["pwd"]):
+        if not user.check_pwd(data["pwd"]) :
             flash("密码错误！", "err")
             return redirect(url_for("home.login"))
 
         session["user_id"] = user.id
-        userlog = Userlog(
-            user_id=user.id,
-            ip=request.remote_addr
-        )
-        db.session.add(userlog)
-        db.session.commit()
+        session["username"] = user.name
         return redirect(url_for("home.index"))
     return render_template("home/login.html", form=form)
