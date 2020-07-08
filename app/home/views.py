@@ -11,7 +11,7 @@ def user_login(f):
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if "user_id" not in session:
+        if session["user_id"] == None:
             return redirect(url_for("home.login"))
         return f(*args, **kwargs)
 
@@ -81,8 +81,8 @@ def register():
 @home.route("/logout/")
 @user_login
 def logout():
-    session.pop("user_id",None)
-    session.pop("username",None)
+    session['user_id']=None
+    session['username']=None
     return redirect(url_for("home.login"))
 @home.route("/login/", methods=["GET", "POST"])
 def login():
