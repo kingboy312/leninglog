@@ -96,11 +96,11 @@ def login():
         if not user :
             flash("邮箱不存在！", "err")
             return redirect(url_for("home.login"))
-        if not user.check_pwd(data["pwd"]) :
+        if not user.check_pwd(data["password"]) :
             flash("密码错误！", "err")
             return redirect(url_for("home.login"))
 
         session["user_id"] = user.id
         session["username"] = user.name
-        return redirect(url_for("home.index"))
+        return redirect(url_for("home.bat"))
     return render_template("home/login.html", form=form)
