@@ -13,10 +13,10 @@
         </div>
     {% endfor %}
     <div class="form-control">
-        {{ form.pwd.label }}
-        {{ form.pwd }}
+        {{ form.password.label }}
+        {{ form.password }}
     </div>
-    {% for err in form.pwd.errors %}
+    {% for err in form.password.errors %}
         <div class="form-control">
           <ul class="errors">
               <li>{{ err }}</li>
