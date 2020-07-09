@@ -20,7 +20,7 @@ def user_login(f):
 @home.route('/topic/')
 @user_login
 def topic():
-    topic = Topic.query.filter_by()
+    topic = Topic.query.filter_by(user_id=session["user_id"]).all()
     return render_template("home/topics.html",topics = topic)
 @home.route('/')
 def bat():
@@ -32,7 +32,8 @@ def add_topic():
     if form.validate_on_submit():  
         data = form.data 
         topic_s = Topic(
-            topic_s= data["topic"]
+            topic_s= data["topic"],
+            user_id= session["user_id"]
         )
         db.session.add(topic_s) 
         db.session.commit()
@@ -42,14 +43,18 @@ def add_topic():
 @user_login
 def emty(topicid):
     enty = Empty.query.filter_by(topic_id= topicid)
-    topic = Topic.query.filter_by(id = topicid).first()
+    topic = Topic.query.get_or_404(topicid)
+    if topic.user_id != session["user_id"]:
+        return redirect(url_for("home.no",id=topicid))
     return render_template("home/topic.html", entries=enty,topic=topic)
 @home.route("/new_enty/<int:topicid>/",methods=["GET", "POST"])
 @user_login
 def new_enty(topicid):
     topic = Topic.query.filter_by(id=topicid).first()
+    if topic.user_id != session["user_id"]:
+        return redirect(url_for("home.no",id=topicid))
     form = newentryforme()
-    if form.validate_on_submit():  
+    if form.validate_on_submit():
         data = form.data 
         entry = Empty(
             empty=data["entry"],
@@ -104,3 +109,12 @@ def login():
         session["username"] = user.name
         return redirect(url_for("home.bat"))
     return render_template("home/login.html", form=form)
+@home.route("/topic/<int:id>/no/")
+def no(id):
+    return redirect(url_for("home.topic"))
+@home.errorhandler(404)
+def page_not_found(error):
+    """
+    404
+    """
+    return render_template("home/404.html"), 404

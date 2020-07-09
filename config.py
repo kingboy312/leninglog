@@ -5,8 +5,8 @@ import app
 from flask import Flask
 class Config:
     SECRET_KEY = 'mrsoft'
-    UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static/uploads/")
-    FC_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "static/uploads/users/")
+    UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/")
+    FC_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/users/")
     @staticmethod
     def init_app(app):
         pass

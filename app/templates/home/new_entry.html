@@ -6,7 +6,10 @@
         <label>new_empty:</label>
         {{ form.entry }}
     </div>
-    <script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
+    {{form.submit}}
+</form>
+
+<script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('content',{
         filebrowserUploadUrl:'/ckupload/',
@@ -14,7 +17,4 @@
         width:'1318px'
     });
 </script>
-    {{form.submit}}
-</form>
-
 {% endblock %}
