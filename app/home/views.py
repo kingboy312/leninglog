@@ -1,17 +1,19 @@
 from . import *
 from app.models import *
-from flask import render_template, url_for, redirect, flash, session, request
+from flask import render_template, url_for, redirect, flash, session, request,current_app,make_response
 from werkzeug.security import generate_password_hash
 from sqlalchemy import and_
 from functools import wraps
 from app.home.forms import *
+import os
+import uuid
 def user_login(f):
     """
     登录装饰器
     """
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if session["user_id"] == None:
+        if not "user_id" in session:
             return redirect(url_for("home.login"))
         return f(*args, **kwargs)
 
@@ -86,8 +88,8 @@ def register():
 @home.route("/logout/")
 @user_login
 def logout():
-    session['user_id']=None
-    session['username']=None
+    session.pop("user_id",None)
+    session.pop("username",None)
     return redirect(url_for("home.login"))
 @home.route("/login/", methods=["GET", "POST"])
 def login():
@@ -118,3 +120,41 @@ def page_not_found(error):
     404
     """
     return render_template("home/404.html"), 404
+@home.route('/ckupload/', methods=['POST', 'OPTIONS'])
+def ckupload():
+    """CKEditor 文件上传"""
+    error = ''
+    url = ''
+    callback = request.args.get("CKEditorFuncNum")
+
+    if request.method == 'POST' and 'upload' in request.files:
+        fileobj = request.files['upload']
+        fname, fext = os.path.splitext(fileobj.filename)
+        rnd_name = '%s%s' % (gen_rnd_filename(), fext)
+
+        filepath = os.path.join(current_app.static_folder, 'uploads/ckeditor', rnd_name)
+        print(filepath)
+        dirname = os.path.dirname(filepath)
+        if not os.path.exists(dirname):
+            try:
+                os.makedirs(dirname)
+            except:
+                error = 'ERROR_CREATE_DIR'
+        elif not os.access(dirname, os.W_OK):
+            error = 'ERROR_DIR_NOT_WRITEABLE'
+
+        if not error:
+            fileobj.save(filepath)
+            url = url_for('static', filename='%s/%s' % ('uploads/ckeditor', rnd_name))
+    else:
+        error = 'post error'
+
+    res = """<script type="text/javascript">
+  window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
+</script>""" % (callback, url, error)
+
+    response = make_response(res)
+    response.headers["Content-Type"] = "text/html"
+    return response
+def gen_rnd_filename():
+    return datetime.now().strftime("%Y%m%d%H%M%S") + str(uuid.uuid4().hex)

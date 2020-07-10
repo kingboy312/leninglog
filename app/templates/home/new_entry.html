@@ -1,10 +1,14 @@
 {% extends "home/index.html" %}
 {% block header %}
+<h1>
 <a href="/topic/{{topic.id}}">{{topic.topic_s}}</a>
-<form rodle="form" method="POST" action="">
+</h1>
+<form method="POST" action="">
     <div class="form-group">
-        <label>new_empty:</label>
-        {{ form.entry }}
+        <h2>
+            <label>new_empty:</label>
+            {{ form.entry }}
+        </h2>
     </div>
     {{form.submit}}
 </form>
