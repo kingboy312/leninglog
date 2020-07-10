@@ -1,8 +1,5 @@
 import os
-import sqlite3
 import pymysql
-import app
-from flask import Flask
 class Config:
     SECRET_KEY = 'mrsoft'
     UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/")
