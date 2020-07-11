@@ -24,7 +24,7 @@ class Empty(db.Model):
     __tablename__ = "empty"
     id = db.Column(db.Integer, primary_key=True)
     empty = db.Column(db.String(1000))
-    add_time =  db.Column(db.DateTime,index=True,default=datetime.now)
+    add_time = db.Column(db.DateTime,index=True,default=datetime.now)
     topic_id = db.Column(db.Integer,db.ForeignKey('topic.id'))
     def __repr__(self):
         return '<Empty %r>' % self.empty
