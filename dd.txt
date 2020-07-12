@@ -1,0 +1,9 @@
+11_env\Scripts\activate
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+python manage.py runserver
+python manage.py shell
+python manage.py db downgrade
+python manage.py db migrations
+new_entry.html
