@@ -120,7 +120,7 @@ def page_not_found(error):
     404
     """
     return render_template("home/404.html"), 404
-@home.route('/ckupload/', methods=['POST', 'OPTIONS'])
+@home.route("/ckupload/", methods=['POST', 'OPTIONS'])
 def ckupload():
     """CKEditor 文件上传"""
     error = ''

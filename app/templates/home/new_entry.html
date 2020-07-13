@@ -10,13 +10,14 @@
             {{ form.entry }}
         
     </div>
-    {{form.submit}}
+    {{ form.csrf_token }}
+    {{ form.submit }}
 </form>
 
 <script src="{{ url_for('static',filename='ckeditor/ckeditor.js') }}"></script>
 <script>
     CKEDITOR.replace('content',{
-        filebrowserUploadUrl:'/ckupload/',
+        filebrowserUploadUrl: 'ckupload/',
         height:'545px',
         width:'1318px'
     });
