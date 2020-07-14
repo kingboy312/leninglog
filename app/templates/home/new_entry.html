@@ -19,7 +19,11 @@
     CKEDITOR.replace('content',{
         filebrowserUploadUrl: '/ckupload/',
         height:'545px',
-        width:'1318px'
+        width:'1318px',
+    });
+    $(document).ready(function(){
+        $("#g-3").addClass("active");
+        $("#g-3-1").addClass("active");
     });
 </script>
 {% endblock %}
