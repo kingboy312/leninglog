@@ -7,3 +7,4 @@ python manage.py shell
 python manage.py db downgrade
 python manage.py db migrations
 new_entry.html
+E:\矜童编程\矜童编程(python)\leaning_log\11_env\Scripts\activate

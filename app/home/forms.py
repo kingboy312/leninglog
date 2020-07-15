@@ -20,7 +20,8 @@ class new_topic_forme(FlaskForm):
 class newentryforme(FlaskForm):
     entry = TextAreaField(
         render_kw={
-            "class":"form-control ckeditor"
+            "class":"form-control ckeditor",
+            "rows": 10
         },
         id="ckeditor"
     )

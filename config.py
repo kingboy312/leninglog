@@ -11,7 +11,8 @@ class DevelopmentConfig(Config):
     base_dir = os.path.abspath(os.path.join(__file__))
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password@127.0.0.1:3306/lening_log'
     DEBUG = True
-
+    port = 9000
+    host = '127.0.0.1'
 # define the config
 config = {
     'default': DevelopmentConfig

@@ -30,14 +30,14 @@ def bat():
 @home.route("/new_topic/",methods=["GET", "POST"])
 @user_login
 def add_topic():
-    form = new_topic_forme()           
-    if form.validate_on_submit():  
-        data = form.data 
+    form = new_topic_forme()
+    if form.validate_on_submit():
+        data = form.data
         topic_s = Topic(
             topic_s= data["topic"],
             user_id= session["user_id"]
         )
-        db.session.add(topic_s) 
+        db.session.add(topic_s)
         db.session.commit()
         return redirect("/topic/")
     return render_template("home/new_topic.html",form = form)
@@ -45,6 +45,7 @@ def add_topic():
 @user_login
 def emty(topicid):
     enty = Empty.query.filter_by(topic_id= topicid)
+    print(enty)
     topic = Topic.query.get_or_404(topicid)
     if topic.user_id != session["user_id"]:
         return redirect(url_for("home.no",id=topicid))
@@ -57,12 +58,12 @@ def new_enty(topicid):
         return redirect(url_for("home.no",id=topicid))
     form = newentryforme()
     if form.validate_on_submit():
-        data = form.data 
+        data = form.data
         entry = Empty(
             empty=data["entry"],
             topic_id=str(topicid)
         )
-        db.session.add(entry) 
+        db.session.add(entry)
         db.session.commit()
         return redirect(url_for("home.topic"),topicid)
     return render_template("home/new_entry.html",form=form,topic=topic)
@@ -73,7 +74,7 @@ def register():
     """
     form = registerforme()
     if form.validate_on_submit():
-        data = form.data 
+        data = form.data
         user = User(
             name = data["username"],
             email = data["email"],
@@ -120,7 +121,7 @@ def page_not_found(error):
     404
     """
     return render_template("home/404.html"), 404
-@home.route("/ckupload/", methods=['POST', 'OPTIONS'])
+@home.route('/ckupload/', methods=['POST', 'OPTIONS'])
 def ckupload():
     """CKEditor 文件上传"""
     error = ''
