@@ -1,4 +1,11 @@
 {% extends "home/index.html" %}
+
+{% block header %}
+  <div class="jumbotron">
+    <h1>new_topic:</h1>
+  </div>
+{% endblock header %}
+
 {% block content  %}
 <form role="form" method="POST" action="">
     {{ form.topic }}
