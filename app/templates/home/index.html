@@ -35,49 +35,44 @@
 
     </head>
     <body>
-    <header class="navbar navbar-static-top bs-docs-nav" id="top">
         <nav class="navbar navber-default navber-static-top">
             <div class="container">
                 <div CLASS="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
-
+<a class="logo" href="/">  <img src="{{url_for('static',filename='base/images/logo.png')}}" alt="" class="img-responsive"></a>
 <!--                    <a class="navber-brand" href="/learninglog/">Learning Log</a>-->
 
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <img src="{{url_for('static',filename='base/images/logo.png')}}" alt="" class="img-responsive"></li><li><a class="navber-brand" href="/">Learning Log</a></li><li><a href="/topic/">Topics</a>
-
-                            </li>
-
-
-                        </ul>
-                        <ul class="nav navbar-collapse navbar-collapse_ collapse">
-
-                            {% if "user_id" in session %}
-                            <li><a>Hello,{{session["username"] }}.</a></li>
-                            <li><a href="/logout/">log out</a></li>
-                            {% else %}
-                            <li><a href="/users/register/">register</a></li>
-                            <li><a href="/login/">log in</a></li>
-                            {% endif %}
-
-                        </ul>
 
                 </div>
-                </div>
-        </nav>
-        {% block header %}{% endblock header %}
-    </header>
+                <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/topic/">Topics</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if "user_id" in session%}
+              <li><a>Hello, {{ session["username"] }}.</a></li>
+              <li><a href="/logout/">log out</a></li>
+            {% else %}
+              <li><a href="/users/register/ %}">register</a></li>
+              <li><a href="/login/">log in</a></li>
+            {% endif %}
+          </ul>
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="page-header">
+        {% block header %}{% endblock %}
+      </div>
+      <div>
+        {% block content %}{% endblock %}
+      </div>
 
 
-<div class="container">
-    <div class="page-header">
 
-    </div>
-    <div>
-        {% block content %}{% endblock content %}
-    </div>
 </div>
-    </body>
-</html>
