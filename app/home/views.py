@@ -159,3 +159,14 @@ def ckupload():
     return response
 def gen_rnd_filename():
     return datetime.now().strftime("%Y%m%d%H%M%S") + str(uuid.uuid4().hex)
+@home.route("/edit_entry/<int:entry_id>/")
+def edt_entry(entry_id):
+    entry = Empty.query.filter_by(id=entry_id).first()
+    topic = Topic.query.filter_by(id=entry.topic_id).first()
+    form = newentryforme()
+    if form.validate_on_submit():
+        data = form.data
+        Empty.query.filter_by(id=entry_id).update({"empty":data["entry"]})
+        db.session.commit()
+        return redirect(url_for("home.topics"))
+    return render_template("home/edt_entry.html",form=form,entry=entry,topic=topic)
