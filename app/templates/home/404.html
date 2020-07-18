@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <title>消失在宇宙星空中的404页面</title>
+    <title>A 404 page that disappears into the sky</title>
     <link href="{{ url_for('static',filename='404/404.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -10,8 +10,8 @@
 <div class="fullScreen" id="fullScreen">
     <img class="rotating" src="{{ url_for('static',filename='404/spaceman.svg') }}">
     <div class="pagenotfound-text">
-        <h1>迷失在太空中！</h1>
-        <h2><a href="{{ url_for('home.bat') }}">返回首页</a></h2>
+        <h1>Lost in space!</h1>
+        <h2><a href="{{ url_for('home.bat') }}">Return to the home page</a></h2>
     </div>
     <canvas id="canvas2d"></canvas>
 </div>
