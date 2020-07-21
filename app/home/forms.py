@@ -39,7 +39,7 @@ class registerforme(FlaskForm):
         ],
         description="用户名",
         render_kw={
-            "placeholder": "请输入用户名！",
+            "placeholder": "Please enter user name!",
         }
     )
     email = StringField(
@@ -51,7 +51,7 @@ class registerforme(FlaskForm):
         description="邮箱",
         render_kw={
             "type": "email",
-            "placeholder": "请输入邮箱！",
+            "placeholder": "Please enter email!",
         }
     )
     pwd = PasswordField(
@@ -61,7 +61,7 @@ class registerforme(FlaskForm):
         ],
         description="密码",
         render_kw={
-            "placeholder": "请输入密码！",
+            "placeholder": "Please enter your password!",
         }
     )
     repwd = PasswordField(
@@ -72,7 +72,7 @@ class registerforme(FlaskForm):
         ],
         description="确认密码",
         render_kw={
-            "placeholder": "请输入确认密码！",
+            "placeholder": "Please enter your confirmation password!",
         }
     )
     submit = SubmitField(
@@ -99,7 +99,7 @@ class LoginForm(FlaskForm):
         description="用户名",
         render_kw={
             "type"       : "text",
-            "placeholder": "请输入用户名！",
+            "placeholder": "Please enter user name!",
             "class":"validate-username",
             "size" : 38,
             "maxlength" : 99
@@ -113,7 +113,7 @@ class LoginForm(FlaskForm):
         description="密码",
         render_kw={
             "type"       : "password",
-            "placeholder": "请输入密码！",
+            "placeholder": "Please enter your password!",
             "class":"validate-password",
             "size": 38,
             "maxlength": 99

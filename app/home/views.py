@@ -114,7 +114,7 @@ def login():
     return render_template("home/login.html", form=form)
 @home.route("/topic/<int:id>/no/")
 def no(id):
-    return redirect(url_for("home.topic"))
+    return render_template("home/404.html")
 @home.errorhandler(404)
 def page_not_found(error):
     """

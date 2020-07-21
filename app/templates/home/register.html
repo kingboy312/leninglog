@@ -1,8 +1,12 @@
 {% extends "home/index.html" %}
+{% block header %}
+  <div class="jumbotron">
+    <h2>register</h2>
+  </div>
+{% endblock header %}
 {% block content  %}
   <form rodle="form" method="POST" action="">
-    <div class="form-control">
-      {{ form.username.label }}
+    <div class="form-group">
       {{ form.username }}
     </div>
     {% for err in form.username.errors %}
@@ -12,8 +16,7 @@
           </ul>
         </div>
     {% endfor %}
-    <div class="form-control">
-      {{ form.email.label }}
+    <div class="form-group">
       {{ form.email }}
     </div>
     {% for err in form.email.errors %}
@@ -23,8 +26,8 @@
           </ul>
         </div>
     {% endfor %}
-    <div class="form-control">
-      {{ form.pwd.label }}
+    <div class="form-group">
+
       {{ form.pwd }}
     </div>
     {% for err in form.pwd.errors %}
@@ -34,9 +37,8 @@
           </ul>
         </div>
     {% endfor %}
-    <div class="form-control">
-      {{ form.repwd.label }}
-      {{ form.repwd }}
+    <div class="form-group">
+        {{ form.repwd }}
     </div>
     {% for err in form.repwd.errors %}
         <div class="form-control">
@@ -52,7 +54,7 @@
           </ul>
         </div>
     {% endfor %}
-    <div class="form-control">
+    <div class="form-group">
         {{ form.csrf_token }}
         {{ form.submit }}
     </div>

@@ -30,7 +30,12 @@
 <script src="{{url_for('static',filename='base/js/jquery.touchSwipe.min.js')}}"></script>
 <script src="{{url_for('static',filename='base/js/jquery.ui.totop.js')}}"></script>
 <script src="{{url_for('static',filename='base/js/script.js')}}"></script>
-
+<script src="{{ url_for('static',filename='admin/plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
+<script src="{{ url_for('static',filename='admin/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ url_for('static',filename='admin/plugins/fastclick/fastclick.js') }}"></script>
+<script src="{{ url_for('static',filename='admin/dist/js/app.min.js') }}"></script>
+<script src="{{ url_for('static',filename='admin/dist/js/demo.js') }}"></script>
 
 
     </head>
@@ -47,16 +52,17 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/topic/">Topics</a></li>
+              <li><a href="/">home</a> </li>
+            <li><a href="/topic/" class="logo" >Topics</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
             {% if "user_id" in session%}
-              <li><a>Hello, {{ session["username"] }}.</a></li>
-              <li><a href="/logout/">log out</a></li>
+              <li><a class="logo" >Hello, {{ session["username"] }}.</a></li>
+              <li><a href="/logout/" class="logo" >log out</a></li>
             {% else %}
-              <li><a href="/users/register/ %}">register</a></li>
-              <li><a href="/login/">log in</a></li>
+              <li><a href="/users/register/" class="logo" >register</a></li>
+              <li><a class="logo"  href="/login/">log in</a></li>
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
@@ -72,7 +78,7 @@
       <div>
         {% block content %}{% endblock %}
       </div>
-
+{% include "home/ff.html" %}
 
 
 </div>

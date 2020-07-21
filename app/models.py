@@ -1,6 +1,6 @@
-from .import SQLAlchemy,create_app
+from .import db
 from datetime import datetime
-db = SQLAlchemy(create_app())
+
 class User(db.Model):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)

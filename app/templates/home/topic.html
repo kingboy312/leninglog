@@ -2,7 +2,7 @@
 
 {% block header %}
   <div class="jumbotron">
-    <h3>{{topic.topic_s}}</h3>
+    <h2>{{topic.topic_s}}</h2>
   </div>
 {% endblock header %}
 
@@ -22,10 +22,10 @@
           </small>
         </h3>
       </div>
-    <div class="panel-body">
-      <h3>
-        {{ entry.empty }}
-      </h3>
+      <div class="panel-body">
+
+        {{ entry.empty|safe }}
+
 
 
       </div>
@@ -35,4 +35,11 @@
       There are no entries for this topic yet.
 
   {% endfor %}
+<script>
+
+    $(document).ready(function(){
+        $("#g-4").addClass("active");
+        $("#g-4-1").addClass("active");
+    });
+</script>
 {% endblock %}

@@ -6,8 +6,6 @@ from flask_script import Manager, Shell
 from app.models import *
 import subprocess
 app = create_app()
-app.config["SECRET_KEY"] = "123456"
-db.init_app(app)
 manager = Manager(app)
 migrate = Migrate(app,db)
 def make_shell_context():
