@@ -19,11 +19,15 @@ class new_topic_forme(FlaskForm):
     )
 class newentryforme(FlaskForm):
     entry = TextAreaField(
+        validators=[
+            DataRequired("Item content cannot be empty!")
+        ],
+        description="The entry content",
         render_kw={
             "class":"form-control ckeditor",
             "rows": 10
-        },
-        id="ckeditor"
+        }
+
     )
     submit = SubmitField(
         'add',
@@ -35,7 +39,7 @@ class registerforme(FlaskForm):
     username = StringField(
         label="username：",
         validators=[
-            DataRequired("用户名不能为空！"),
+            DataRequired("User name cannot be empty!"),
         ],
         description="用户名",
         render_kw={
@@ -45,8 +49,8 @@ class registerforme(FlaskForm):
     email = StringField(
         label="email：",
         validators=[
-            DataRequired("邮箱不能为空！"),
-            Email("邮箱格式不正确！")
+            DataRequired("The mailbox cannot be empty!"),
+            Email("Incorrect email format!")
         ],
         description="邮箱",
         render_kw={
@@ -57,7 +61,7 @@ class registerforme(FlaskForm):
     pwd = PasswordField(
         label="password：",
         validators=[
-            DataRequired("密码不能为空！")
+            DataRequired("Password cannot be empty!")
         ],
         description="密码",
         render_kw={
@@ -67,8 +71,8 @@ class registerforme(FlaskForm):
     repwd = PasswordField(
         label="password(again)：",
         validators=[
-            DataRequired("请输入确认密码！"),
-            EqualTo('pwd', message="两次密码不一致！")
+            DataRequired("Please enter your confirmation password!"),
+            EqualTo('pwd', message="The two passwords don't match!")
         ],
         description="确认密码",
         render_kw={
@@ -89,12 +93,12 @@ class registerforme(FlaskForm):
         email = field.data
         user = User.query.filter_by(email=email).count()
         if user == 1:
-            raise ValidationError("邮箱已经存在！")
+            raise ValidationError("Email already exists!")
 class LoginForm(FlaskForm):
     username = StringField(
         validators=[
-            DataRequired("用户名不能为空！"),
-            Length(min=3, max=50, message="用户名长度必须在3到10位之间")
+            DataRequired("User name cannot be empty!"),
+            Length(min=3, max=50, message="The user name must be between 3 and 10 digits long")
         ],
         description="用户名",
         render_kw={
@@ -107,10 +111,10 @@ class LoginForm(FlaskForm):
     )
     password = PasswordField(
         validators=[
-            DataRequired("密码不能为空！"),
-            Length(min=3, message="密码长度不少于6位")
+            DataRequired("Password cannot be empty!"),
+            Length(min=3, message="Password length is not less than 6 digits")
         ],
-        description="密码",
+        description="password",
         render_kw={
             "type"       : "password",
             "placeholder": "Please enter your password!",
@@ -120,7 +124,7 @@ class LoginForm(FlaskForm):
         }
     )
     submit = SubmitField(
-        '登录',
+        'The login',
         render_kw={
             "class": "btn btn-primary login",
         }

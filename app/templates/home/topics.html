@@ -1,19 +1,15 @@
 {% extends "home/index.html" %}
 {% block header %}
   <div class="jumbotron">
-    <h3>
+    <h1>
         topics:
-    </h3>
+    </h1>
   </div>
 {% endblock header %}
 {% block content  %}
 
-    <ul class="nav">
-      <li>
-        <h3>
-          <a href="/new_topic/">new_topic</a>
-        </h3>
-      </li>
+    <ul>
+
         {% for topic in topics %}
           <li>
               <h3>
@@ -26,4 +22,7 @@
           <li><h3>No topics have been added yet.</h3></li>
         {% endfor %}
     </ul>
+<h3>
+          <a href="/new_topic/">new_topic</a>
+</h3>
 {% endblock %}

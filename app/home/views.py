@@ -7,6 +7,7 @@ from functools import wraps
 from app.home.forms import *
 import os
 import uuid
+from werkzeug.utils import secure_filename
 def user_login(f):
     """
     登录装饰器
@@ -66,6 +67,7 @@ def new_enty(topicid):
         db.session.add(entry)
         db.session.commit()
         return redirect(url_for("home.topic"),topicid)
+
     return render_template("home/new_entry.html",form=form,topic=topic)
 @home.route("/users/register/", methods=["GET", "POST"])
 def register():
