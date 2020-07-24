@@ -1,0 +1,23 @@
+{% extends "home/index.html" %}
+{% block header %}
+  <div class="jumbotron">
+    <h2>Opinion_suggestion</h2>
+  </div>
+{% endblock header %}
+{% block content  %}
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>name</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label>email</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label>Opinion suggestion</label>
+            {{ form.o_s }}
+        </div>
+        {{ form.submit }}
+    </form>
+{% endblock %}

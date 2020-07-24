@@ -125,3 +125,44 @@ class LoginForm(FlaskForm):
             "class": "btn btn-primary login",
         }
     )
+class Opinion_suggestionform(FlaskForm):
+    name = StringField(
+        label="name",
+        validators=[
+            DataRequired("The name cannot be empty!")
+        ],
+        description="name",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "Please enter your name!",
+        }
+    )
+    email = StringField(
+        label="email",
+        validators=[
+            DataRequired("The email cannot be empty!")
+        ],
+        description="email",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "Please enter your email!",
+        }
+    )
+    o_s = TextAreaField(
+        label="Opinion suggestion",
+        validators=[
+            DataRequired("The Opinion suggestion cannot be empty!")
+        ],
+        description="Opinion suggestion",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "Please enter your Opinion suggestion!",
+            "rows": 7
+        }
+    )
+    submit = SubmitField(
+        'ok',
+        render_kw={
+            "class": "btn btn-primary login",
+        }
+    )

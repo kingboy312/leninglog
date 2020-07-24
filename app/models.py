@@ -28,3 +28,11 @@ class Empty(db.Model):
     topic_id = db.Column(db.Integer,db.ForeignKey('topic.id'))
     def __repr__(self):
         return '<Empty %r>' % self.empty
+class o_s(db.Model):
+    __tablename__ = "o_s"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1000))
+    email = db.Column(db.String(1000))
+    o_s = db.Column(db.String(1000))
+    def __repr__(self):
+        return '<o_s %r>' % self.o_s

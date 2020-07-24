@@ -37,3 +37,42 @@ class LoginForm(FlaskForm):
             "class": "btn btn-primary login",
         }
     )
+class PwdForm(FlaskForm):
+    old_pwd = PasswordField(
+        label="The old password",
+        validators=[
+            DataRequired("Old password cannot be empty!")
+        ],
+        description="旧密码",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "Please enter your old password!",
+        }
+    )
+    new_pwd = PasswordField(
+        label="The new password",
+        validators=[
+            DataRequired("New password cannot be empty!")
+        ],
+        description="新密码",
+        render_kw={
+            "class": "form-control",
+            "placeholder": "Please enter a new password!",
+        }
+    )
+    submit = SubmitField(
+        'save',
+        render_kw={
+            "class": "btn btn-primary",
+        }
+    )
+
+    def validate_old_pwd(self, field):
+        from flask import session
+        pwd = field.data
+        name = session["admin"]
+        admin = User.query.filter_by(
+            name=name
+        ).first()
+        if not admin.check_pwd(pwd):
+            raise ValidationError("旧密码错误！")

@@ -1,5 +1,5 @@
 from . import *
-from app.models import *
+from app.models import User,Topic,Empty,o_s
 from flask import render_template, url_for, redirect, flash, session, request,current_app,make_response
 from werkzeug.security import generate_password_hash
 from sqlalchemy import and_
@@ -101,11 +101,11 @@ def login():
     if form.validate_on_submit():
         data = form.data
         user = User.query.filter_by(name=data["username"]).first()
-        if not user :
-            flash("邮箱不存在！", "err")
+        if not user and not User.query.filter_by(email=data["username"]).first() :
+            flash("Email or user name does not exist!", "err")
             return redirect(url_for("home.login"))
         if not user.check_pwd(data["password"]) :
-            flash("密码错误！", "err")
+            flash("Password error!", "err")
             return redirect(url_for("home.login"))
 
         session["user_id"] = user.id
@@ -171,4 +171,21 @@ def edt_entry(entry_id):
         return redirect(url_for("home.topic"))
     elif request.method == "GET":
         form.entry.data = entry.empty
+        form.submit.label.text = "edt"
     return render_template("home/edt_entry.html",form=form,entry=entry,topic=topic)
+# @home.route("/Opinion_suggestion/",methods=["GET", "POST"])
+# @user_login
+# def Opinion_suggestion():
+#     form = Opinion_suggestionform()
+#     if form.validate_on_submit():
+#
+#         data = form.data
+#         o_s=o_s(
+#             name=data["name"],
+#             email=data["email"],
+#             o_s=data["o_s"]
+#         )
+#         db.session.add(o_s)
+#         db.session.commit()
+#         return redirect(url_for("home.index"))
+#     return render_template("home/user.html",form=form)
