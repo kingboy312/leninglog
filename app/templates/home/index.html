@@ -52,17 +52,17 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-              <li><a href="/">home</a> </li>
-            <li><a href="/topic/" class="logo" >Topics</a></li>
+              <li><a href="/" class="btn" >home</a> </li>
+            <li><a href="/topic/" class="btn" >Topics</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
             {% if "user_id" in session%}
-              <li><a class="logo" >Hello, {{ session["username"] }}.</a></li>
-              <li><a href="/logout/" class="logo" >log out</a></li>
+              <li><a class="btn" >Hello, {{ session["username"] }}.</a></li>
+              <li><a href="/logout/" class="btn" >log out</a></li>
             {% else %}
-              <li><a href="/users/register/" class="logo" >register</a></li>
-              <li><a class="logo"  href="/login/">log in</a></li>
+              <li><a href="/users/register/" class="btn" >register</a></li>
+              <li><a class="btn"  href="/login/">log in</a></li>
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->

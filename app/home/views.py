@@ -46,7 +46,6 @@ def add_topic():
 @user_login
 def emty(topicid):
     enty = Empty.query.filter_by(topic_id= topicid)
-    print(enty)
     topic = Topic.query.get_or_404(topicid)
     if topic.user_id != session["user_id"]:
         return redirect(url_for("home.no",id=topicid))
